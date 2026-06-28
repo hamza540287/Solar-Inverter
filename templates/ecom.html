@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voltora Solar | Solar Inverter Store</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --ink: #14213d;
+            --muted: #65758b;
+            --sun: #ffb703;
+            --orange: #fb8500;
+            --green: #2a9d8f;
+            --sky: #8ecae6;
+            --light: #f7fbff;
+            --white: #ffffff;
+            --line: #dbe7f1;
+            --shadow: 0 18px 45px rgba(20, 33, 61, 0.14);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--ink);
+            background: var(--light);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer;
+            border: 0;
+        }
+
+        .container {
+            width: min(1120px, 92%);
+            margin: auto;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(247, 251, 255, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(219, 231, 241, 0.8);
+        }
+
+        .nav-content {
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.25rem;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--sun), var(--orange));
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(251, 133, 0, 0.28);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .cart-button,
+        .menu-button {
+            min-width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--ink);
+            border: 1px solid var(--line);
+            box-shadow: 0 8px 22px rgba(20, 33, 61, 0.08);
+        }
+
+        .cart-button {
+            position: relative;
+            padding: 0 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .cart-count {
+            min-width: 22px;
+            height: 22px;
+            display: inline-grid;
+            place-items: center;
+            border-radius: 999px;
+            background: var(--green);
+            color: var(--white);
+            font-size: 0.78rem;
+        }
+
+        .menu-button {
+            display: none;
+            font-size: 1.35rem;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 70px 0 44px;
+            background:
+                radial-gradient(circle at 12% 18%, rgba(255, 183, 3, 0.28), transparent 26%),
+                linear-gradient(135deg, #f7fbff 0%, #e8f8fb 52%, #fff7df 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.03fr 0.97fr;
+            align-items: center;
+            gap: 42px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(42, 157, 143, 0.12);
+            color: #147468;
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            max-width: 650px;
+            font-size: clamp(2.35rem, 6vw, 4.6rem);
+            line-height: 1.02;
+            letter-spacing: 0;
+        }
+
+        .hero h1 span {
+            color: var(--orange);
+        }
+
+        .hero p {
+            max-width: 560px;
+            margin: 22px 0 28px;
+            color: var(--muted);
+            font-size: 1.08rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            min-height: 48px;
+            border-radius: 8px;
+            padding: 0 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 800;
+            transition: 0.25s ease;
+        }
+
+        .primary-btn {
+            background: var(--orange);
+            color: var(--white);
+            box-shadow: 0 14px 24px rgba(251, 133, 0, 0.25);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            background: #e77700;
+        }
+
+        .secondary-btn {
+            color: var(--ink);
+            background: var(--white);
+            border: 1px solid var(--line);
+        }
+
+        .secondary-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--sky);
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 430px;
+            display: grid;
+            place-items: center;
+        }
+
+        .sun-ring {
+            position: absolute;
+            width: min(78vw, 430px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: repeating-conic-gradient(from 0deg, rgba(255, 183, 3, 0.55) 0 8deg, transparent 8deg 16deg);
+            animation: spin 22s linear infinite;
+        }
+
+        .inverter-showcase {
+            position: relative;
+            width: min(400px, 88vw);
+            padding: 26px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.75);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.86);
+            animation: float 4.5s ease-in-out infinite;
+        }
+
+        .solar-panel {
+            height: 150px;
+            border-radius: 10px;
+            background:
+                linear-gradient(90deg, transparent 24%, rgba(255,255,255,0.22) 25%, transparent 26%, transparent 49%, rgba(255,255,255,0.22) 50%, transparent 51%, transparent 74%, rgba(255,255,255,0.22) 75%, transparent 76%),
+                linear-gradient(0deg, transparent 31%, rgba(255,255,255,0.2) 32%, transparent 33%, transparent 65%, rgba(255,255,255,0.2) 66%, transparent 67%),
+                linear-gradient(135deg, #1769aa, #083d77);
+            transform: perspective(500px) rotateX(12deg);
+            border: 5px solid #dce9f5;
+            box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.16);
+        }
+
+        .inverter-box {
+            width: 72%;
+            min-height: 165px;
+            margin: -14px auto 0;
+            border-radius: 14px;
+            background: linear-gradient(145deg, #ffffff, #edf5fb);
+            border: 1px solid #d4e2ec;
+            box-shadow: 0 16px 26px rgba(20, 33, 61, 0.16);
+            padding: 18px;
+        }
+
+        .display {
+            height: 54px;
+            border-radius: 8px;
+            background: #102a43;
+            color: #9dffcb;
+            display: grid;
+            place-items: center;
+            font-weight: 900;
+            letter-spacing: 0;
+        }
+
+        .power-lines {
+            display: grid;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .power-lines span {
+            height: 8px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--green), var(--sun));
+            animation: pulseLine 1.6s ease-in-out infinite;
+        }
+
+        .power-lines span:nth-child(2) {
+            width: 75%;
+            animation-delay: 0.18s;
+        }
+
+        .power-lines span:nth-child(3) {
+            width: 54%;
+            animation-delay: 0.34s;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 34px;
+        }
+
+        .stat {
+            padding: 18px;
+            border-radius: 8px;
+            background: var(--white);
+            border: 1px solid var(--line);
+            box-shadow: 0 12px 30px rgba(20, 33, 61, 0.08);
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--green);
+            font-size: 1.7rem;
+            line-height: 1;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        section {
+            padding: 76px 0;
+        }
+
+        .section-title {
+            max-width: 650px;
+            margin-bottom: 34px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.12;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+        }
+
+        .features-grid,
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .feature,
+        .product-card,
+        .checkout-panel {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            box-shadow: 0 14px 34px rgba(20, 33, 61, 0.08);
+        }
+
+        .feature {
+            padding: 24px;
+            transition: 0.25s ease;
+        }
+
+        .feature:hover,
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 183, 3, 0.16);
+            color: var(--orange);
+            font-size: 1.55rem;
+            margin-bottom: 18px;
+        }
+
+        .feature h3,
+        .product-card h3 {
+            font-size: 1.18rem;
+            margin-bottom: 8px;
+        }
+
+        .feature p,
+        .product-card p {
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .products {
+            background: linear-gradient(180deg, #ffffff 0%, #eef8fb 100%);
+        }
+
+        .product-card {
+            overflow: hidden;
+            transition: 0.25s ease;
+        }
+
+        .product-image {
+            height: 210px;
+            display: grid;
+            place-items: center;
+            background:
+                linear-gradient(135deg, rgba(142, 202, 230, 0.38), rgba(255, 183, 3, 0.22)),
+                #f5fbff;
+        }
+
+        .mini-inverter {
+            width: 135px;
+            height: 150px;
+            border-radius: 14px;
+            background: linear-gradient(145deg, #ffffff, #e5eef7);
+            border: 1px solid #cad9e4;
+            padding: 16px;
+            box-shadow: 0 18px 28px rgba(20, 33, 61, 0.16);
+            position: relative;
+        }
+
+        .mini-inverter::before {
+            content: "";
+            position: absolute;
+            inset: -22px auto auto -34px;
+            width: 90px;
+            height: 48px;
+            border-radius: 6px;
+            background:
+                linear-gradient(90deg, transparent 47%, rgba(255,255,255,0.3) 48%, transparent 50%),
+                linear-gradient(#0f6194, #08456d);
+            border: 3px solid #d7e6f0;
+            transform: rotate(-14deg);
+        }
+
+        .mini-screen {
+            height: 42px;
+            border-radius: 7px;
+            background: #14324a;
+            color: #9dffcb;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .mini-dots {
+            display: flex;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .mini-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--green);
+        }
+
+        .mini-dots span:nth-child(2) {
+            background: var(--sun);
+        }
+
+        .mini-dots span:nth-child(3) {
+            background: var(--orange);
+        }
+
+        .product-body {
+            padding: 22px;
+        }
+
+        .rating {
+            color: var(--orange);
+            font-size: 0.92rem;
+            margin-bottom: 10px;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .price {
+            font-weight: 900;
+            font-size: 1.35rem;
+            color: var(--green);
+        }
+
+        .add-cart {
+            min-height: 42px;
+            border-radius: 8px;
+            padding: 0 14px;
+            background: var(--ink);
+            color: var(--white);
+            font-weight: 800;
+            transition: 0.22s ease;
+        }
+
+        .add-cart:hover {
+            background: var(--orange);
+        }
+
+        .deal {
+            background:
+                linear-gradient(rgba(20, 33, 61, 0.74), rgba(20, 33, 61, 0.74)),
+                linear-gradient(135deg, #105d72, #2a9d8f 45%, #ffb703);
+            color: var(--white);
+        }
+
+        .deal-content {
+            display: grid;
+            grid-template-columns: 1fr 0.8fr;
+            align-items: center;
+            gap: 34px;
+        }
+
+        .deal h2 {
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .deal p {
+            color: rgba(255, 255, 255, 0.82);
+            max-width: 590px;
+            margin-bottom: 24px;
+        }
+
+        .timer {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .time-box {
+            padding: 16px 12px;
+            border-radius: 8px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .time-box strong {
+            display: block;
+            font-size: 1.7rem;
+            line-height: 1;
+            color: var(--sun);
+        }
+
+        .time-box span {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .checkout-panel {
+            padding: 24px;
+        }
+
+        .cart-list {
+            display: grid;
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f5fbff;
+            border: 1px solid var(--line);
+        }
+
+        .cart-item small {
+            color: var(--muted);
+        }
+
+        .remove-item {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: #ffe8e4;
+            color: #bb2d1f;
+            font-weight: 900;
+        }
+
+        .cart-total {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+            font-size: 1.2rem;
+            font-weight: 900;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            min-height: 48px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 12px 14px;
+            font: inherit;
+            color: var(--ink);
+            background: #fbfdff;
+        }
+
+        .contact-form textarea,
+        .contact-form button {
+            grid-column: 1 / -1;
+        }
+
+        .contact-form textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .footer {
+            padding: 28px 0;
+            background: #102a43;
+            color: rgba(255, 255, 255, 0.82);
+            text-align: center;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-16px); }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseLine {
+            0%, 100% { opacity: 0.55; transform: scaleX(0.82); transform-origin: left; }
+            50% { opacity: 1; transform: scaleX(1); }
+        }
+
+        @media (max-width: 900px) {
+            .menu-button {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 74px;
+                left: 4%;
+                right: 4%;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 12px;
+                background: var(--white);
+                border: 1px solid var(--line);
+                border-radius: 8px;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 13px 10px;
+            }
+
+            .hero-grid,
+            .deal-content,
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 48px;
+            }
+
+            .hero-visual {
+                min-height: 360px;
+            }
+
+            .features-grid,
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                width: min(100% - 28px, 1120px);
+            }
+
+            .logo {
+                font-size: 1.05rem;
+            }
+
+            .logo-mark {
+                width: 36px;
+                height: 36px;
+            }
+
+            .cart-button {
+                padding: 0 10px;
+            }
+
+            .cart-button span:first-child {
+                display: none;
+            }
+
+            .stats,
+            .features-grid,
+            .products-grid,
+            .timer,
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 56px 0;
+            }
+
+            .hero-visual {
+                min-height: 310px;
+            }
+
+            .inverter-showcase {
+                padding: 18px;
+            }
+
+            .solar-panel {
+                height: 118px;
+            }
+
+            .inverter-box {
+                min-height: 138px;
+            }
+
+            .product-meta {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .add-cart,
+            .primary-btn,
+            .secondary-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo" aria-label="Voltora Solar home">
+                <span class="logo-mark">V</span>
+                <span>Voltora Solar</span>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#products">Products</a>
+                <a href="#features">Why Us</a>
+                <a href="#deal">Offer</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <button class="cart-button" type="button" onclick="scrollToCart()">
+                <span>Cart</span>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+
+            <button class="menu-button" id="menuButton" type="button" aria-label="Open menu">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="reveal visible">
+                    <div class="eyebrow">Clean power for every home</div>
+                    <h1>Smart solar inverters for <span>bright savings.</span></h1>
+                    <p>
+                        Shop reliable hybrid, off-grid, and smart solar inverters designed for homes,
+                        shops, and small offices. Easy installation, quiet performance, and long backup power.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="primary-btn" href="#products">Shop Inverters</a>
+                        <a class="secondary-btn" href="#contact">Get Free Quote</a>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat">
+                            <strong>98%</strong>
+                            <span>Peak efficiency</span>
+                        </div>
+                        <div class="stat">
+                            <strong>5yr</strong>
+                            <span>Service warranty</span>
+                        </div>
+                        <div class="stat">
+                            <strong>24/7</strong>
+                            <span>Support team</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual reveal visible">
+                    <div class="sun-ring"></div>
+                    <div class="inverter-showcase" aria-label="Solar inverter product illustration">
+                        <div class="solar-panel"></div>
+                        <div class="inverter-box">
+                            <div class="display">5.5 KW</div>
+                            <div class="power-lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2>Built for simple, dependable solar power.</h2>
+                    <p>Voltora Solar keeps the buying experience clear with practical features and friendly after-sales support.</p>
+                </div>
+
+                <div class="features-grid">
+                    <article class="feature reveal">
+                        <div class="feature-icon">☀</div>
+                        <h3>High Solar Efficiency</h3>
+                        <p>MPPT charging helps capture more sunlight and reduce electricity bills every month.</p>
+                    </article>
+
+                    <article class="feature reveal">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast Backup Switch</h3>
+                        <p>Automatic switching keeps lights, fans, routers, and essentials running smoothly.</p>
+                    </article>
+
+                    <article class="feature reveal">
+                        <div class="feature-icon">✓</div>
+                        <h3>Easy Installation</h3>
+                        <p>Clear wiring, compact bodies, and guided setup make each product beginner friendly.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="products" id="products">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2>Popular solar inverters.</h2>
+                    <p>Choose a model based on your load, backup needs, and future solar panel plan.</p>
+                </div>
+
+                <div class="products-grid">
+                    <article class="product-card reveal">
+                        <div class="product-image">
+                            <div class="mini-inverter">
+                                <div class="mini-screen">3.2 KW</div>
+                                <div class="mini-dots"><span></span><span></span><span></span></div>
+                            </div>
+                        </div>
+                        <div class="product-body">
+                            <div class="rating">★★★★★ 4.9</div>
+                            <h3>Voltora HomeLite 3.2KW</h3>
+                            <p>Best for small homes, routers, lights, fans, and daily backup needs.</p>
+                            <div class="product-meta">
+                                <span class="price">$649</span>
+                                <button class="add-cart" type="button" data-name="Voltora HomeLite 3.2KW" data-price="649">Add to Cart</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card reveal">
+                        <div class="product-image">
+                            <div class="mini-inverter">
+                                <div class="mini-screen">5.5 KW</div>
+                                <div class="mini-dots"><span></span><span></span><span></span></div>
+                            </div>
+                        </div>
+                        <div class="product-body">
+                            <div class="rating">★★★★★ 4.8</div>
+                            <h3>Voltora HybridMax 5.5KW</h3>
+                            <p>Hybrid inverter for medium homes with solar panels and battery storage.</p>
+                            <div class="product-meta">
+                                <span class="price">$1,149</span>
+                                <button class="add-cart" type="button" data-name="Voltora HybridMax 5.5KW" data-price="1149">Add to Cart</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card reveal">
+                        <div class="product-image">
+                            <div class="mini-inverter">
+                                <div class="mini-screen">8.0 KW</div>
+                                <div class="mini-dots"><span></span><span></span><span></span></div>
+                            </div>
+                        </div>
+                        <div class="product-body">
+                            <div class="rating">★★★★★ 4.7</div>
+                            <h3>Voltora ProGrid 8KW</h3>
+                            <p>Powerful choice for larger homes, shops, pumps, and heavier appliances.</p>
+                            <div class="product-meta">
+                                <span class="price">$1,849</span>
+                                <button class="add-cart" type="button" data-name="Voltora ProGrid 8KW" data-price="1849">Add to Cart</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="deal" id="deal">
+            <div class="container deal-content">
+                <div class="reveal">
+                    <h2>Summer Solar Deal</h2>
+                    <p>Get free delivery and installation guidance on every inverter order this week. The timer is only a demo, but the energy savings are very real.</p>
+                    <a class="primary-btn" href="#products">View Products</a>
+                </div>
+
+                <div class="timer reveal" aria-label="Offer countdown timer">
+                    <div class="time-box"><strong id="days">07</strong><span>Days</span></div>
+                    <div class="time-box"><strong id="hours">00</strong><span>Hours</span></div>
+                    <div class="time-box"><strong id="minutes">00</strong><span>Minutes</span></div>
+                    <div class="time-box"><strong id="seconds">00</strong><span>Seconds</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container checkout-grid">
+                <div class="checkout-panel reveal" id="cartPanel">
+                    <h2>Your Cart</h2>
+                    <p style="color: var(--muted);">Add products and check the estimated order total.</p>
+                    <div class="cart-list" id="cartList">
+                        <p style="color: var(--muted);">Your cart is empty.</p>
+                    </div>
+                    <div class="cart-total">
+                        <span>Total</span>
+                        <span id="cartTotal">$0</span>
+                    </div>
+                </div>
+
+                <div class="checkout-panel reveal">
+                    <h2>Request a Quote</h2>
+                    <p style="color: var(--muted); margin-bottom: 18px;">Send your details and our solar expert will suggest the right inverter.</p>
+
+                    <!-- <form class="contact-form" onsubmit="sendMessage(event)" action="/send-email" method="POST">
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                        <input type="tel" id="phone" name="phone" placeholder="Phone number" required>
+                        <select id="need" name="need" required>
+                            <option value="">Select power need</option>
+                            <option>Small home</option>
+                            <option>Medium home</option>
+                            <option>Large home or shop</option>
+                        </select>
+                        <input type="email" id="email" name="email" placeholder="Email address" required>
+                        <textarea id="message" name="message" placeholder="Tell us about your appliances or solar plan"></textarea>
+                        <button class="primary-btn" type="submit">Send Quote Request</button>
+                    </form> -->
+                    <form class="contact-form" action="/send-email" method="POST">
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                        <input type="tel" id="phone" name="phone" placeholder="Phone number" required>
+                        <select id="need" name="need" required>
+                            <option value="">Select power need</option>
+                            <option>Small home</option>
+                            <option>Medium home</option>
+                            <option>Large home or shop</option>
+                        </select>
+                        <input type="email" id="email" name="email" placeholder="Email address" required>
+                        <textarea id="message" name="message" placeholder="Tell us about your appliances or solar plan"></textarea>
+                        <button class="primary-btn" type="submit">Send Quote Request</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Voltora Solar. Smart solar inverters for cleaner energy.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById("menuButton");
+        const navLinks = document.getElementById("navLinks");
+        const cartCount = document.getElementById("cartCount");
+        const cartList = document.getElementById("cartList");
+        const cartTotal = document.getElementById("cartTotal");
+        const cart = [];
+
+        menuButton.addEventListener("click", function () {
+            navLinks.classList.toggle("open");
+        });
+
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("open");
+            });
+        });
+
+        document.querySelectorAll(".add-cart").forEach(function (button) {
+            button.addEventListener("click", function () {
+                const name = button.dataset.name;
+                const price = Number(button.dataset.price);
+
+                cart.push({ name: name, price: price });
+                updateCart();
+
+                button.textContent = "Added!";
+                setTimeout(function () {
+                    button.textContent = "Add to Cart";
+                }, 900);
+            });
+        });
+
+        function updateCart() {
+            cartCount.textContent = cart.length;
+
+            if (cart.length === 0) {
+                cartList.innerHTML = '<p style="color: var(--muted);">Your cart is empty.</p>';
+                cartTotal.textContent = "$0";
+                return;
+            }
+
+            cartList.innerHTML = "";
+            let total = 0;
+
+            cart.forEach(function (item, index) {
+                total += item.price;
+
+                const row = document.createElement("div");
+                row.className = "cart-item";
+                row.innerHTML =
+                    "<div><strong>" + item.name + "</strong><br><small>$" + item.price.toLocaleString() + "</small></div>" +
+                    '<button class="remove-item" type="button" aria-label="Remove item">×</button>';
+
+                row.querySelector("button").addEventListener("click", function () {
+                    cart.splice(index, 1);
+                    updateCart();
+                });
+
+                cartList.appendChild(row);
+            });
+
+            cartTotal.textContent = "$" + total.toLocaleString();
+        }
+
+        function scrollToCart() {
+            document.getElementById("cartPanel").scrollIntoView({ behavior: "smooth" });
+        }
+
+        // function sendMessage(event) {
+        //     event.preventDefault();
+        //     const name = document.getElementById("name").value;
+        //     const phone = document.getElementById("phone").value;
+        //     const need = document.getElementById("need").value;
+        //     const email = document.getElementById("email").value;
+        //     const message = document.getElementById("message").value;
+
+        //     alert("Thank you, " + name + "! Voltora Solar will contact you soon.");
+        //     event.target.reset();
+        // }
+
+        const revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll(".reveal").forEach(function (element) {
+            revealObserver.observe(element);
+        });
+
+        const dealEnd = new Date();
+        dealEnd.setDate(dealEnd.getDate() + 7);
+
+        function updateTimer() {
+            const now = new Date();
+            const distance = dealEnd - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((distance / (1000 * 60)) % 60);
+            const seconds = Math.floor((distance / 1000) % 60);
+
+            document.getElementById("days").textContent = String(days).padStart(2, "0");
+            document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+            document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+            document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
