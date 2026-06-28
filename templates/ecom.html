@@ -915,8 +915,8 @@
                             <h3>Voltora HomeLite 3.2KW</h3>
                             <p>Best for small homes, routers, lights, fans, and daily backup needs.</p>
                             <div class="product-meta">
-                                <span class="price">$649</span>
-                                <button class="add-cart" type="button" data-name="Voltora HomeLite 3.2KW" data-price="649">Add to Cart</button>
+                                <span class="price">60000PKR</span>
+                                <button class="add-cart" type="button" data-name="Voltora HomeLite 3.2KW" data-price="60000">Add to Cart</button>
                             </div>
                         </div>
                     </article>
@@ -933,8 +933,8 @@
                             <h3>Voltora HybridMax 5.5KW</h3>
                             <p>Hybrid inverter for medium homes with solar panels and battery storage.</p>
                             <div class="product-meta">
-                                <span class="price">$1,149</span>
-                                <button class="add-cart" type="button" data-name="Voltora HybridMax 5.5KW" data-price="1149">Add to Cart</button>
+                                <span class="price">120000PKR</span>
+                                <button class="add-cart" type="button" data-name="Voltora HybridMax 5.5KW" data-price="120000">Add to Cart</button>
                             </div>
                         </div>
                     </article>
@@ -951,8 +951,8 @@
                             <h3>Voltora ProGrid 8KW</h3>
                             <p>Powerful choice for larger homes, shops, pumps, and heavier appliances.</p>
                             <div class="product-meta">
-                                <span class="price">$1,849</span>
-                                <button class="add-cart" type="button" data-name="Voltora ProGrid 8KW" data-price="1849">Add to Cart</button>
+                                <span class="price">160000PKR</span>
+                                <button class="add-cart" type="button" data-name="Voltora ProGrid 8KW" data-price="160000">Add to Cart</button>
                             </div>
                         </div>
                     </article>
@@ -987,7 +987,7 @@
                     </div>
                     <div class="cart-total">
                         <span>Total</span>
-                        <span id="cartTotal">$0</span>
+                        <span id="cartTotal">PKR0</span>
                     </div>
                 </div>
 
@@ -1070,7 +1070,7 @@
 
             if (cart.length === 0) {
                 cartList.innerHTML = '<p style="color: var(--muted);">Your cart is empty.</p>';
-                cartTotal.textContent = "$0";
+                cartTotal.textContent = "PKR0";
                 return;
             }
 
@@ -1083,7 +1083,7 @@
                 const row = document.createElement("div");
                 row.className = "cart-item";
                 row.innerHTML =
-                    "<div><strong>" + item.name + "</strong><br><small>$" + item.price.toLocaleString() + "</small></div>" +
+                    "<div><strong>" + item.name + "</strong><br><small>PKR" + item.price.toLocaleString() + "</small></div>" +
                     '<button class="remove-item" type="button" aria-label="Remove item">×</button>';
 
                 row.querySelector("button").addEventListener("click", function () {
@@ -1094,7 +1094,7 @@
                 cartList.appendChild(row);
             });
 
-            cartTotal.textContent = "$" + total.toLocaleString();
+            cartTotal.textContent = "PKR" + total.toLocaleString();
         }
 
         function scrollToCart() {
